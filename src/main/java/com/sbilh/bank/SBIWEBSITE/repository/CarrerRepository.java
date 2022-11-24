@@ -12,4 +12,5 @@ import java.util.Optional;
 public interface CarrerRepository extends JpaRepository<CarrerModel, Long> {
     Optional<CarrerModel> findByJobTitle(String title);
     List<CarrerModel> findAllByJobTitle(String jobTitle, Pageable pageable);
+    CarrerModel deleteByJobId(Long id);
 }

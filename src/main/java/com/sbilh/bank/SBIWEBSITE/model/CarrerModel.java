@@ -1,9 +1,11 @@
 package com.sbilh.bank.SBIWEBSITE.model;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
 
 @Data
 @AllArgsConstructor
@@ -16,7 +18,9 @@ public class CarrerModel {
     @Column(name = "id", nullable = false)
     private Long id;
 
-    @Column(name = "job_title")
+    @NotEmpty()
+    @Column(name = "job_title", nullable = false)
+    @JsonProperty("job_title")
     private String jobTitle;
 
     @Column(name = "unit")
