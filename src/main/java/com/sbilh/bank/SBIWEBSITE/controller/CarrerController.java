@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/carrer")
@@ -51,7 +52,7 @@ public class CarrerController {
     }
 
     @PostMapping("{jobid}")
-    public CarrerModel deleteByJobTitle(@PathVariable ("jobid") Long jobid){
+    public CarrerModel deleteByJobId(@PathVariable ("jobid") Long jobid){
         return carrerServiceImpl.deleteByJobId(jobid);
     }
 }
