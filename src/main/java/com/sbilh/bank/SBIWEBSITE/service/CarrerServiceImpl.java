@@ -37,8 +37,8 @@ public class CarrerServiceImpl implements CarrerService  {
     }
 
     @Override
-    public CarrerModel createCarrer(CarrerModel carrerModel) {
-        return carrerRepository.save(carrerModel);
+    public void createCarrer(CarrerModel carrerModel) {
+        carrerRepository.save(carrerModel);
     }
 
 

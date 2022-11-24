@@ -10,5 +10,5 @@ public interface CarrerService {
     CarrerModel findByCarrer(String carrerTitle);
     List<CarrerModel> findAllByJobTitle(String jobTitle, Pageable pageable);
     CarrerModel findById(Long id);
-    CarrerModel createCarrer(CarrerModel carrerModel);
+    void createCarrer(CarrerModel carrerModel);
 }
