@@ -34,6 +34,16 @@ public class CarrerExceptionController {
         log.error("get carrer by {} doesn't found",res);
         return new ResponseEntity<>(res, HttpStatus.NOT_FOUND);
     }
+
+//    @ExceptionHandler(value = CarrerException.class)
+//    public ResponseEntity<Object> delete(CarrerException e){
+//        Map<String,Object> res = new HashMap<>();
+//        res.put("error", e.getMessage());
+//        res.put("status", "error");
+//        res.put("code", HttpStatus.NOT_FOUND.value());
+//        log.error("Delete carrer by {} doesn't found",res);
+//        return new ResponseEntity<>(res, HttpStatus.NOT_FOUND);
+//    }
     @ResponseStatus(value = HttpStatus.OK)
     public ResponseEntity<Object> response(HttpServletResponse httpServletResponse){
         return new ResponseEntity<>(new ResponseCarrer(HttpStatus.OK.value(),"success",httpServletResponse.getLocale()), HttpStatus.NOT_FOUND);

@@ -39,6 +39,7 @@ public class CarrerServiceImpl implements CarrerService  {
 
     @Override
     public CarrerModel deleteByJobId(Long jobid) {
-        return carrerRepository.deleteByJobId(jobid);
+        carrerRepository.deleteById(jobid);
+        return null;
     }
 }
