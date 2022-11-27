@@ -3,17 +3,16 @@ package com.sbilh.bank.SBIWEBSITE.service;
 import com.sbilh.bank.SBIWEBSITE.exception.CarrerException;
 import com.sbilh.bank.SBIWEBSITE.model.CarrerModel;
 import com.sbilh.bank.SBIWEBSITE.repository.CarrerRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 @Service
 public class CarrerServiceImpl implements CarrerService  {
-    @Autowired
+
     public final CarrerRepository carrerRepository;
 
     public CarrerServiceImpl(CarrerRepository carrerRepository) {
@@ -26,8 +25,15 @@ public class CarrerServiceImpl implements CarrerService  {
 
     @Override
     public CarrerModel deleteById(Long id) {
-        carrerRepository.deleteById(id);
         return null;
+    }
+
+    @Override
+    public CarrerModel save(CarrerModel carrerModel) {
+        Optional<CarrerModel> carrerModelOptional = carrerRepository.findById(carrerModel.getId());
+        if(!carrerModelOptional.isPresent()){
+
+        }
     }
 
     @Override
@@ -39,8 +45,7 @@ public class CarrerServiceImpl implements CarrerService  {
         return carrerRepository.findByJobTitle(carrerTitle).orElse(null);
     }
 
-    @Override
-    public Optional<CarrerModel> save(CarrerModel saveCarrer) {
+
 
     @Override
     public List<CarrerModel> findAllByJobTitle(String jobTitle, Pageable pageable) {

@@ -10,11 +10,11 @@ import java.util.Optional;
 public interface CarrerService {
     CarrerModel create(CarrerModel carrerModel);
     CarrerModel deleteById (Long id);
-
+    CarrerModel save(CarrerModel carrerModel);
     List<CarrerModel> findAll();
     CarrerModel findByCarrer(String carrerTitle);
 //    @Query("SELECT jobtitle FROM Carrer jobtitle WHERE jobtiel.jobtitle = ?1")
-    @Query("SELECT * FROM Carrer WHERE Carrer = jobtitle")
+//    @Query("SELECT jobtitle form carrer WHERE Carrer = jobtitle")
     List<CarrerModel> findAllByJobTitle(String jobtitle, Pageable pageable);
     CarrerModel findById(Long id);
     CarrerModel deleteByJobId (Long jobid);
