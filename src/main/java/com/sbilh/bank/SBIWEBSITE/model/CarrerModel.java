@@ -20,28 +20,34 @@ public class CarrerModel {
 
     @NotEmpty()
     @Column(name = "job_title", nullable = false)
-    @JsonProperty("job_title")
+//    @JsonProperty("job_title")
     private String jobTitle;
 
-    @Column(name = "unit")
+    @Column(name = "expired_date")
+    private String dateExpired;
+
+    @Column(name = "position")
+    private String position;
+
+    @Column(name = "unit",nullable = false)
     private String unit;
 
-    @Column(name = "department")
+    @Column(name = "department", nullable = false)
     private String department;
 
-    @Column(name = "reporting_to")
+    @Column(name = "reporting_to", nullable = false)
     private String reporting_to;
 
-    @Column(name = "head_quarter")
-    private String head_quarter;
+    @Column(name ="locations")
+    private String location;
 
-    @Column(name = "job_purpose")
+    @Column(name = "job_purpose" , nullable = false)
     private String job_purpose;
 
-    @Column(name = "duties_and_responsibilities")
+    @Column(name = "duties_and_responsibilities", nullable = false)
     private String duties_and_responsibilities;
 
-    @Column(name = "qualification")
+    @Column(name = "qualification", nullable = false)
     private String qualification;
 
 }

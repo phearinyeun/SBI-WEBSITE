@@ -9,6 +9,8 @@ import java.util.Optional;
 
 public interface CarrerService {
     CarrerModel create(CarrerModel carrerModel);
+    CarrerModel deleteById (Long id);
+
     List<CarrerModel> findAll();
     CarrerModel findByCarrer(String carrerTitle);
 //    @Query("SELECT jobtitle FROM Carrer jobtitle WHERE jobtiel.jobtitle = ?1")

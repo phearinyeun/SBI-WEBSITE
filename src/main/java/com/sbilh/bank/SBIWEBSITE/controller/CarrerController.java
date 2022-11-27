@@ -19,6 +19,7 @@ public class CarrerController {
     public CarrerController(CarrerServiceImpl carrerServiceImpl) {
         this.carrerServiceImpl = carrerServiceImpl;
     }
+
     @PostMapping("/create")
     public CarrerModel createCarrer(@RequestBody @Valid CarrerModel carrerModel){
         return carrerServiceImpl.create(carrerModel);
@@ -36,17 +37,28 @@ public class CarrerController {
         log.info("Get Carrer by {}",id);
         CarrerModel model = carrerServiceImpl.findById(id);
         log.info("success get by {} {}",id,model);
-       return new ResponseCarrer(200,"success",model);
+        return new ResponseCarrer(200,"success",model);
+    }
+
+    @PostMapping("/deletebyid/{id}")
+    public CarrerModel deleteById(@PathVariable ("id") Long id){
+        return carrerServiceImpl.deleteById(id);
+    }
+
+    @PostMapping("/update")
+    public CarrerModel updateCarrer(CarrerModel carrerModel){
+        carrerServiceImpl.save(carrerModel);
+        return null;
+    }
+
+    @GetMapping("/{jobtitle}")
+    public List<CarrerModel> findAllByJobTitle(String jobtitle,Pageable pageable){
+        return carrerServiceImpl.findAllByJobTitle(jobtitle, pageable);
     }
 
     @GetMapping("title/{carrerTitle}")
     public CarrerModel findByCarrer(@PathVariable ("carrerTitle") String carrerTitle){
         return carrerServiceImpl.findByCarrer(carrerTitle);
-    }
-
-    @GetMapping("/jobtitle/{jobtitle}")
-    public List<CarrerModel> findAllByJobTitle(String jobtitle,Pageable pageable){
-        return carrerServiceImpl.findAllByJobTitle(jobtitle, pageable);
     }
 
     @GetMapping("/{id}")
