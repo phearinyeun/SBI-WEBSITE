@@ -11,6 +11,7 @@ import java.util.Optional;
 @Repository
 public interface CarrerRepository extends JpaRepository<CarrerModel, Long> {
     Optional<CarrerModel> findByJobTitle(String title);
-    List<CarrerModel> findAllByJobTitle(String jobTitle, Pageable pageable);
+//    @Query("SELECT * FROM CarrerModel WHERE jobTitle = jobTitle")
+    List<CarrerModel> findAllByJobTitle (String jobTitle, Pageable pageable);
 
 }

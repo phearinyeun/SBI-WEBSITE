@@ -20,9 +20,9 @@ public class CarrerController {
         this.carrerServiceImpl = carrerServiceImpl;
     }
 
-    @PostMapping("/create")
-    public CarrerModel createCarrer(@RequestBody @Valid CarrerModel carrerModel){
-        return carrerServiceImpl.create(carrerModel);
+    @PostMapping
+    public CarrerModel addCarrer(@RequestBody @Valid CarrerModel carrerModel){
+        return carrerServiceImpl.addCarrer(carrerModel);
     }
 
     @GetMapping
@@ -40,25 +40,9 @@ public class CarrerController {
         return new ResponseCarrer(200,"success",model);
     }
 
-    @PostMapping("/deletebyid/{id}")
-    public CarrerModel deleteById(@PathVariable ("id") Long id){
-        return carrerServiceImpl.deleteById(id);
-    }
-
-    @PostMapping("/update")
-    public CarrerModel updateCarrer(CarrerModel carrerModel){
-        carrerServiceImpl.save(carrerModel);
-        return null;
-    }
-
     @GetMapping("/{jobtitle}")
     public List<CarrerModel> findAllByJobTitle(String jobtitle,Pageable pageable){
         return carrerServiceImpl.findAllByJobTitle(jobtitle, pageable);
-    }
-
-    @GetMapping("title/{carrerTitle}")
-    public CarrerModel findByCarrer(@PathVariable ("carrerTitle") String carrerTitle){
-        return carrerServiceImpl.findByCarrer(carrerTitle);
     }
 
     @GetMapping("/{id}")
@@ -66,12 +50,15 @@ public class CarrerController {
         return carrerServiceImpl.findById(id);
     }
 
-    @PostMapping("/delete/{jobid}")
-    public CarrerModel deleteByJobId(@PathVariable ("jobid") Long jobid){
-//        log.info("Delete Carrer by {}",jobid);
-//        CarrerModel model = carrerServiceImpl.deleteByJobId(jobid);
-//        log.info("success delete by {} {}",jobid,model);
-//        return new ResponseCarrer(200,"success",model);
-        return carrerServiceImpl.deleteByJobId(jobid);
+    @PostMapping("/delete/{id}")
+    public CarrerModel deleteById(@PathVariable ("id") Long id){
+        carrerServiceImpl.deleteById(id);
+        return null;
+    }
+
+    @PutMapping("/update/{id}")
+    public CarrerModel updateCarrer(@PathVariable ("id") Long id,@RequestBody CarrerModel carrerModel){
+        return carrerServiceImpl.save(carrerModel, id);
+
     }
 }

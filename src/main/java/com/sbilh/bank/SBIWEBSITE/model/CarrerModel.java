@@ -1,11 +1,13 @@
 package com.sbilh.bank.SBIWEBSITE.model;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
+import java.time.LocalDate;
 
 @Data
 @AllArgsConstructor
@@ -24,7 +26,9 @@ public class CarrerModel {
     private String jobTitle;
 
     @Column(name = "expired_date")
-    private String dateExpired;
+    @JsonFormat(pattern="dd-MM-yyyy")
+    private LocalDate dateExpired;
+//    private String dateExpired;
 
     @Column(name = "position")
     private String position;
