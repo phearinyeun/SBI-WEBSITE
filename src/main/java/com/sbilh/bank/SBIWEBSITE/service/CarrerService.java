@@ -11,7 +11,7 @@ public interface CarrerService {
     CarrerModel deleteById (Long id);
     CarrerModel save(CarrerModel carrerModel, Long id);
     List<CarrerModel> findAll();
-    @Query("SELECT jb FROM ")
+    @Query("SELECT j FROM CarrerModel j WHERE j.jobTitle =:jobTitle")
     List<CarrerModel> findAllByJobTitle(String jobtitle, Pageable pageable);
     CarrerModel findById(Long id);
 

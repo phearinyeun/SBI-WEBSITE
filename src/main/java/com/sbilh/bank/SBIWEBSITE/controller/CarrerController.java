@@ -1,5 +1,6 @@
 package com.sbilh.bank.SBIWEBSITE.controller;
 
+import com.sbilh.bank.SBIWEBSITE.exception.NotFoundException;
 import com.sbilh.bank.SBIWEBSITE.extra.carrer.ResponseCarrer;
 import com.sbilh.bank.SBIWEBSITE.model.CarrerModel;
 import com.sbilh.bank.SBIWEBSITE.service.CarrerServiceImpl;
@@ -40,20 +41,18 @@ public class CarrerController {
         return new ResponseCarrer(200,"success",model);
     }
 
-    @GetMapping("/{jobtitle}")
-    public List<CarrerModel> findAllByJobTitle(String jobtitle,Pageable pageable){
+    @GetMapping("title/{jobtitle}")
+    public List<CarrerModel> findAllByJobTitle(@PathVariable("jobtitle") String jobtitle,Pageable pageable){
         return carrerServiceImpl.findAllByJobTitle(jobtitle, pageable);
-    }
 
-    @GetMapping("/{id}")
-    public CarrerModel getCarrerById(@PathVariable ("id") Long id){
-        return carrerServiceImpl.findById(id);
     }
 
     @PostMapping("/delete/{id}")
-    public CarrerModel deleteById(@PathVariable ("id") Long id){
-        carrerServiceImpl.deleteById(id);
-        return null;
+    public NotFoundException deleteById(@PathVariable ("id") Long id){
+        log.info("Delete Carrer by {}" ,id);
+        CarrerModel model = carrerServiceImpl.deleteById(id);
+        log.info("Success deleted by {} {}" ,id, model);
+       return new NotFoundException ("");
     }
 
     @PutMapping("/update/{id}")

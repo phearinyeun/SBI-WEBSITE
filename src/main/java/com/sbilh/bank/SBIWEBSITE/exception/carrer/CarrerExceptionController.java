@@ -1,6 +1,7 @@
 package com.sbilh.bank.SBIWEBSITE.exception.carrer;
 
 import com.sbilh.bank.SBIWEBSITE.exception.CarrerException;
+import com.sbilh.bank.SBIWEBSITE.exception.NotFoundException;
 import com.sbilh.bank.SBIWEBSITE.extra.carrer.ResponseCarrer;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
@@ -35,17 +36,20 @@ public class CarrerExceptionController {
         return new ResponseEntity<>(res, HttpStatus.NOT_FOUND);
     }
 
-//    @ExceptionHandler(value = CarrerException.class)
-//    public ResponseEntity<Object> delete(CarrerException e){
-//        Map<String,Object> res = new HashMap<>();
-//        res.put("error", e.getMessage());
-//        res.put("status", "error");
-//        res.put("code", HttpStatus.NOT_FOUND.value());
-//        log.error("Delete carrer by {} doesn't found",res);
-//        return new ResponseEntity<>(res, HttpStatus.NOT_FOUND);
-//    }
+    @ExceptionHandler(value = NotFoundException.class)
+    public ResponseEntity<Object> exception(NotFoundException e){
+        Map<String, Object> res = new HashMap<>();
+        res.put("error", e.getMessage());
+        res.put("status", "error");
+        res.put("code", HttpStatus.NOT_FOUND.value());
+        log.error("get carrer by {} doesn't found",res);
+        return new ResponseEntity<>(res, HttpStatus.NOT_FOUND);
+    }
+
+
     @ResponseStatus(value = HttpStatus.OK)
     public ResponseEntity<Object> response(HttpServletResponse httpServletResponse){
         return new ResponseEntity<>(new ResponseCarrer(HttpStatus.OK.value(),"success",httpServletResponse.getLocale()), HttpStatus.NOT_FOUND);
     }
+
 }

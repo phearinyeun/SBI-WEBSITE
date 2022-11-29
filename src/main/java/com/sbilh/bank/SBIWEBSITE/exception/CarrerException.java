@@ -7,4 +7,5 @@ public class CarrerException extends RuntimeException{
         super(message);
         this.message = message;
     }
+
 }
