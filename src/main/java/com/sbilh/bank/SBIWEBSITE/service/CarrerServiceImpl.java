@@ -1,6 +1,7 @@
 package com.sbilh.bank.SBIWEBSITE.service;
 
 import com.sbilh.bank.SBIWEBSITE.exception.CarrerException;
+import com.sbilh.bank.SBIWEBSITE.exception.CarrerNotFoundException;
 import com.sbilh.bank.SBIWEBSITE.model.CarrerModel;
 import com.sbilh.bank.SBIWEBSITE.repository.CarrerRepository;
 import org.springframework.data.domain.Pageable;
@@ -50,6 +51,6 @@ public class CarrerServiceImpl implements CarrerService  {
     }
     @Override
     public CarrerModel findById(Long id) {
-        return carrerRepository.findById(id).orElseThrow(() -> new CarrerException("Carrer doesn't exist!"));
+        return carrerRepository.findById(id).orElseThrow(() -> new CarrerNotFoundException(id));
     }
 }
