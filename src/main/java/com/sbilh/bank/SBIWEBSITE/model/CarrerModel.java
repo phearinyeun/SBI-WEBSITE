@@ -25,12 +25,11 @@ public class CarrerModel {
 //    @JsonProperty("job_title")
     private String jobTitle;
 
-    @Column(name = "expired_date")
+    @Column(name = "expired_date", nullable = false)
     @JsonFormat(pattern="dd-MM-yyyy")
     private LocalDate dateExpired;
-//    private String dateExpired;
 
-    @Column(name = "position")
+    @Column(name = "position", nullable = false)
     private String position;
 
     @Column(name = "unit",nullable = false)
@@ -42,7 +41,7 @@ public class CarrerModel {
     @Column(name = "reporting_to", nullable = false)
     private String reporting_to;
 
-    @Column(name ="locations")
+    @Column(name ="locations", nullable = false)
     private String location;
 
     @Column(name = "job_purpose" , nullable = false)
@@ -53,5 +52,4 @@ public class CarrerModel {
 
     @Column(name = "qualification", nullable = false)
     private String qualification;
-
 }

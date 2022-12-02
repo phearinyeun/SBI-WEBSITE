@@ -2,7 +2,7 @@ package com.sbilh.bank.SBIWEBSITE.controller;
 
 import com.sbilh.bank.SBIWEBSITE.extra.carrer.ResponseCarrer;
 import com.sbilh.bank.SBIWEBSITE.model.CarrerModel;
-import com.sbilh.bank.SBIWEBSITE.service.CarrerServiceImpl;
+import com.sbilh.bank.SBIWEBSITE.service.impl.CarrerServiceImpl;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.*;
@@ -39,13 +39,11 @@ public class CarrerController {
         CarrerModel model = carrerServiceImpl.findById(id);
         log.info("success get by {} {}",id,model);
         return new ResponseCarrer(200,"success",model);
-
     }
 
     @GetMapping("title/{jobtitle}")
     public List<CarrerModel> findAllByJobTitle(@PathVariable("jobtitle") String jobtitle,Pageable pageable){
         return carrerServiceImpl.findAllByJobTitle(jobtitle, pageable);
-
     }
 
     @PostMapping("/delete/{id}")
