@@ -1,3 +1,4 @@
+/*
 package com.sbilh.bank.SBIWEBSITE.configh;
 
 
@@ -20,3 +21,4 @@ public class WebSecurityConfigh extends WebSecurityConfigurerAdapter {
                 .httpBasic();
     }
 }
+*/

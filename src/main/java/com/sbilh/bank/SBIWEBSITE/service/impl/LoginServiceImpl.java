@@ -6,6 +6,7 @@ import com.sbilh.bank.SBIWEBSITE.service.LoginService;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class LoginServiceImpl implements LoginService {
@@ -15,6 +16,11 @@ public class LoginServiceImpl implements LoginService {
         this.loginRepository = loginRepository;
     }
 
+
+    @Override
+    public Optional<UserLogin> userLoginOption() {
+        return Optional.empty();
+    }
 
     @Override
     public List<UserLogin> findbyId(Long id) {
