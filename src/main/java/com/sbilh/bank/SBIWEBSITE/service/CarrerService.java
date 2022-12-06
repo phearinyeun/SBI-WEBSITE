@@ -7,11 +7,11 @@ import org.springframework.data.jpa.repository.Query;
 import java.util.List;
 
 public interface CarrerService {
-    CarrerModel addCarrer(CarrerModel carrerModel);
+    CarrerModel createCarrer(CarrerModel carrerModel);
     boolean deleteById (Long id);
     CarrerModel save(CarrerModel carrerModel, Long id);
     List<CarrerModel> findAll(CarrerModel carrerModel);
-    @Query("SELECT j FROM CarrerModel j WHERE j.jobTitle =:jobTitle")
+//    @Query("SELECT j FROM CarrerModel j WHERE j.jobTitle =:jobTitle")
     List<CarrerModel> findAllByJobTitle(String jobtitle, Pageable pageable);
     CarrerModel findById(Long id);
 

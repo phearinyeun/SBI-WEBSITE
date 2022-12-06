@@ -1,7 +1,6 @@
 package com.sbilh.bank.SBIWEBSITE.service.impl;
 
 import com.sbilh.bank.SBIWEBSITE.exception.CarrerNotFoundException;
-import com.sbilh.bank.SBIWEBSITE.extra.carrer.ResponseCarrer;
 import com.sbilh.bank.SBIWEBSITE.model.CarrerModel;
 import com.sbilh.bank.SBIWEBSITE.repository.CarrerRepository;
 import com.sbilh.bank.SBIWEBSITE.service.CarrerService;
@@ -9,7 +8,6 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -23,7 +21,8 @@ public class CarrerServiceImpl implements CarrerService {
         this.carrerRepository = carrerRepository;
     }
     @Override
-    public CarrerModel addCarrer(CarrerModel carrerModel) {
+    public CarrerModel createCarrer(CarrerModel carrerModel) {
+        log.info("Carrer Added {} ", carrerModel);
         return carrerRepository.save(carrerModel);
     }
 
@@ -52,7 +51,7 @@ public class CarrerServiceImpl implements CarrerService {
         return null;
     }
     @Override
-    public List<CarrerModel>  findAll(CarrerModel carrerModel) {
+    public List<CarrerModel> findAll(CarrerModel carrerModel) {
         log.info("Get all carrer: {}",carrerModel);
         return carrerRepository.findAll();
     }
@@ -62,9 +61,14 @@ public class CarrerServiceImpl implements CarrerService {
     }
     @Override
     public CarrerModel findById(Long id) {
-        log.info("Get Carrer by {}",id);
         Optional<CarrerModel> carrerModel = carrerRepository.findById(id);
-        log.info("success get by {} {}",id,carrerModel);
-        return carrerRepository.findById(id).orElseThrow(() -> new CarrerNotFoundException(id));
+        if (carrerModel.isPresent()) {
+            log.info("Get Carrer by {}", id);
+//            Optional<CarrerModel> carrerModel = carrerRepository.findById(id);
+            log.info("Success Get Carrer by {} {}", id, carrerModel);
+            return carrerRepository.findById(id).orElseThrow(() -> new CarrerNotFoundException(id));
+        }
+        CarrerNotFoundException carrerNotFoundException = new CarrerNotFoundException(id);
+        return null;
     }
 }

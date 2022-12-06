@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/carrer")
@@ -22,8 +23,8 @@ public class CarrerController {
     }
 
     @PostMapping
-    public CarrerModel addCarrer(@RequestBody @Valid CarrerModel carrerModel){
-        return carrerServiceImpl.addCarrer(carrerModel);
+    public CarrerModel createCarrer(@RequestBody @Valid CarrerModel carrerModel){
+        return carrerServiceImpl.createCarrer(carrerModel);
     }
     @GetMapping
     public ResponseCarrer findAll(CarrerModel carrerModel){
@@ -31,9 +32,12 @@ public class CarrerController {
         return new ResponseCarrer(200, "success",carrerModelList);
     }
     @GetMapping("findby/{id}")
-    public ResponseCarrer findById(@PathVariable("id") Long id){
-        CarrerModel carrerModel = carrerServiceImpl.findById(id);
-        return new ResponseCarrer(200,"success", carrerModel);
+    public ResponseCarrer findById(@PathVariable("id") Long id) {
+        if (carrerModel.class()) {
+            CarrerModel carrerModel = carrerServiceImpl.findById(id);
+            return new ResponseCarrer(200, "success", carrerModel);
+        }
+        return null;
     }
     @GetMapping("title/{jobtitle}")
     public List<CarrerModel> findAllByJobTitle(@PathVariable("jobtitle") String jobtitle,Pageable pageable){
@@ -43,9 +47,8 @@ public class CarrerController {
     public ResponseCarrer deleteById(@PathVariable ("id") Long id){
         boolean isDelete = carrerServiceImpl.deleteById(id);
         if(!isDelete)
-            throw new CarrerNotFoundException(id, "Delete doesn't success","asdfasdf","asfdasdf");
+            throw new CarrerNotFoundException(id, "Delete doesn't success");
         return new ResponseCarrer (200,"Sccuess Deleted Carrer By Id "+ id.toString(), id);
-        return new ResponseCarrer (200,"Sccuess Deleted Carrer By Id ", id);
     }
     @PutMapping("/update/{id}")
     public ResponseCarrer updateCarrer(@PathVariable ("id") Long id,@RequestBody CarrerModel carrerModel){
