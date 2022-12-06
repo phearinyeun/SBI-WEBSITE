@@ -1,5 +1,6 @@
 package com.sbilh.bank.SBIWEBSITE.controller;
 
+import com.sbilh.bank.SBIWEBSITE.exception.CarrerNotFoundException;
 import com.sbilh.bank.SBIWEBSITE.extra.carrer.ResponseCarrer;
 import com.sbilh.bank.SBIWEBSITE.model.CarrerModel;
 import com.sbilh.bank.SBIWEBSITE.service.impl.CarrerServiceImpl;
@@ -24,37 +25,31 @@ public class CarrerController {
     public CarrerModel addCarrer(@RequestBody @Valid CarrerModel carrerModel){
         return carrerServiceImpl.addCarrer(carrerModel);
     }
-
     @GetMapping
-    public ResponseCarrer findAll(){
-        List<CarrerModel> carrerModelList = carrerServiceImpl.findAll();
-        log.info("Get all carrer: {}",carrerModelList);
+    public ResponseCarrer findAll(CarrerModel carrerModel){
+        List<CarrerModel> carrerModelList = carrerServiceImpl.findAll(carrerModel);
         return new ResponseCarrer(200, "success",carrerModelList);
     }
-
     @GetMapping("findby/{id}")
     public ResponseCarrer findById(@PathVariable("id") Long id){
-
-        log.info("Get Carrer by {}",id);
-        CarrerModel model = carrerServiceImpl.findById(id);
-        log.info("success get by {} {}",id,model);
-        return new ResponseCarrer(200,"success",model);
+        CarrerModel carrerModel = carrerServiceImpl.findById(id);
+        return new ResponseCarrer(200,"success", carrerModel);
     }
-
     @GetMapping("title/{jobtitle}")
     public List<CarrerModel> findAllByJobTitle(@PathVariable("jobtitle") String jobtitle,Pageable pageable){
         return carrerServiceImpl.findAllByJobTitle(jobtitle, pageable);
     }
-
     @PostMapping("/delete/{id}")
-    public CarrerModel deleteById(@PathVariable ("id") Long id){
-        carrerServiceImpl.deleteById(id);
-        return null;
+    public ResponseCarrer deleteById(@PathVariable ("id") Long id){
+        boolean isDelete = carrerServiceImpl.deleteById(id);
+        if(!isDelete)
+            throw new CarrerNotFoundException(id, "Delete doesn't success","asdfasdf","asfdasdf");
+        return new ResponseCarrer (200,"Sccuess Deleted Carrer By Id "+ id.toString(), id);
+        return new ResponseCarrer (200,"Sccuess Deleted Carrer By Id ", id);
     }
-
     @PutMapping("/update/{id}")
-    public CarrerModel updateCarrer(@PathVariable ("id") Long id,@RequestBody CarrerModel carrerModel){
-        return carrerServiceImpl.save(carrerModel, id);
-
+    public ResponseCarrer updateCarrer(@PathVariable ("id") Long id,@RequestBody CarrerModel carrerModel){
+        carrerServiceImpl.save(carrerModel, id);
+        return new ResponseCarrer(200,"Success updated carrer",carrerModel);
     }
 }

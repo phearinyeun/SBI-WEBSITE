@@ -8,9 +8,9 @@ import java.util.List;
 
 public interface CarrerService {
     CarrerModel addCarrer(CarrerModel carrerModel);
-    CarrerModel deleteById (Long id);
+    boolean deleteById (Long id);
     CarrerModel save(CarrerModel carrerModel, Long id);
-    List<CarrerModel> findAll();
+    List<CarrerModel> findAll(CarrerModel carrerModel);
     @Query("SELECT j FROM CarrerModel j WHERE j.jobTitle =:jobTitle")
     List<CarrerModel> findAllByJobTitle(String jobtitle, Pageable pageable);
     CarrerModel findById(Long id);
