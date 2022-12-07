@@ -57,6 +57,7 @@ public class CarrerServiceImpl implements CarrerService {
     }
     @Override
     public List<CarrerModel> findAllByJobTitle(String jobTitle, Pageable pageable) {
+        log.info("Find by Carrer {} ", jobTitle);
         return carrerRepository.findAllByJobTitle(jobTitle, pageable);
     }
     @Override

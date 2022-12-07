@@ -13,7 +13,6 @@ import java.util.Optional;
 @Service
 @Transactional
 @Slf4j
-
 public class NewsServiceImpl implements NewsService {
     public final NewsRepository newsRepository;
 
@@ -26,30 +25,26 @@ public class NewsServiceImpl implements NewsService {
         log.info("Adding News {} to news {}", newsModel);
         return newsRepository.save(newsModel);
     }
-
     @Override
     public NewsModel updateNews (NewsModel newsModel, Long id) {
         Optional<NewsModel> newsModelOptional = newsRepository.findById(id);
         if (newsModelOptional.isPresent()){
             newsModel.setId(id);
             newsRepository.save(newsModel);
+            log.info("Carrer is update {} ", newsModel);
+
             return newsModel;
         }
         return null;
     }
-
-
     @Override
     public List<NewsModel> findAllNews() {
         return newsRepository.findAll();
     }
-
     @Override
     public NewsModel deleteById(Long id) {
         log.info("Deleted News By Id {}", id);
         newsRepository.deleteById(id);
         return null;
     }
-
-
 }

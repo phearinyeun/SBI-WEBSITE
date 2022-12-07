@@ -1,7 +1,7 @@
 package com.sbilh.bank.SBIWEBSITE.exception.carrer;
 
 import com.sbilh.bank.SBIWEBSITE.exception.CarrerException;
-import com.sbilh.bank.SBIWEBSITE.extra.carrer.ResponseCarrer;
+import com.sbilh.bank.SBIWEBSITE.exception.respone.ResponseCarrer;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

@@ -1,7 +1,7 @@
 package com.sbilh.bank.SBIWEBSITE.controller;
 
 import com.sbilh.bank.SBIWEBSITE.exception.CarrerNotFoundException;
-import com.sbilh.bank.SBIWEBSITE.extra.carrer.ResponseCarrer;
+import com.sbilh.bank.SBIWEBSITE.exception.respone.ResponseCarrer;
 import com.sbilh.bank.SBIWEBSITE.model.CarrerModel;
 import com.sbilh.bank.SBIWEBSITE.service.impl.CarrerServiceImpl;
 import lombok.extern.slf4j.Slf4j;
@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 @RequestMapping("/carrer")
@@ -33,15 +32,16 @@ public class CarrerController {
     }
     @GetMapping("findby/{id}")
     public ResponseCarrer findById(@PathVariable("id") Long id) {
-        if (carrerModel.class()) {
             CarrerModel carrerModel = carrerServiceImpl.findById(id);
             return new ResponseCarrer(200, "success", carrerModel);
-        }
-        return null;
     }
     @GetMapping("title/{jobtitle}")
     public List<CarrerModel> findAllByJobTitle(@PathVariable("jobtitle") String jobtitle,Pageable pageable){
-        return carrerServiceImpl.findAllByJobTitle(jobtitle, pageable);
+        carrerServiceImpl.findAllByJobTitle(jobtitle, pageable);
+        if(jobtitle.equals(jobtitle)){
+            return carrerServiceImpl.findAllByJobTitle(jobtitle, pageable);
+        }
+        return null;
     }
     @PostMapping("/delete/{id}")
     public ResponseCarrer deleteById(@PathVariable ("id") Long id){
