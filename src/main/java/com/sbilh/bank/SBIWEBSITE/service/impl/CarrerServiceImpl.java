@@ -50,16 +50,19 @@ public class CarrerServiceImpl implements CarrerService {
         log.info("Could now found id {}",id);
         return null;
     }
+
     @Override
     public List<CarrerModel> findAll(CarrerModel carrerModel) {
         log.info("Get all carrer: {}",carrerModel);
         return carrerRepository.findAll();
     }
+
     @Override
     public List<CarrerModel> findAllByJobTitle(String jobTitle, Pageable pageable) {
         log.info("Find by Carrer {} ", jobTitle);
         return carrerRepository.findAllByJobTitle(jobTitle, pageable);
     }
+
     @Override
     public CarrerModel findById(Long id) {
         Optional<CarrerModel> carrerModel = carrerRepository.findById(id);

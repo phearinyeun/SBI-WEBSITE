@@ -1,0 +1,52 @@
+2022-12-08 16:36:14.722  INFO 5928 --- [main] c.s.b.SBIWEBSITE.SbiWebsiteApplication   : Starting SbiWebsiteApplication using Java 19 on LS-LAP-10 with PID 5928 (D:\Development\SBI-WEBSITE\SBI-WEBSITE\target\classes started by phearin.yeun in D:\Development\SBI-WEBSITE\SBI-WEBSITE)
+2022-12-08 16:36:14.726  INFO 5928 --- [main] c.s.b.SBIWEBSITE.SbiWebsiteApplication   : No active profile set, falling back to 1 default profile: "default"
+2022-12-08 16:36:16.384  INFO 5928 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2022-12-08 16:36:16.525  INFO 5928 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 121 ms. Found 3 JPA repository interfaces.
+2022-12-08 16:36:17.885  INFO 5928 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2022-12-08 16:36:18.132  INFO 5928 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 3291 ms
+2022-12-08 16:36:18.435  INFO 5928 --- [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2022-12-08 16:36:18.535  INFO 5928 --- [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 5.6.12.Final
+2022-12-08 16:36:19.074  INFO 5928 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2022-12-08 16:36:19.473  INFO 5928 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2022-12-08 16:36:19.527  INFO 5928 --- [main] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.PostgreSQLDialect
+2022-12-08 16:36:21.028  INFO 5928 --- [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2022-12-08 16:36:21.041  INFO 5928 --- [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2022-12-08 16:36:22.168  WARN 5928 --- [main] .s.s.UserDetailsServiceAutoConfiguration : 
+
+Using generated security password: ab1f7585-49cb-4ff9-bb73-66edd6eb4835
+
+This generated password is for development use only. Your security configuration must be updated before running your application in production.
+
+2022-12-08 16:36:23.941  INFO 5928 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@131b58d4, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@5e8698c0, org.springframework.security.web.context.SecurityContextPersistenceFilter@25c548d1, org.springframework.security.web.header.HeaderWriterFilter@4f0c1409, org.springframework.security.web.csrf.CsrfFilter@34b462e0, org.springframework.security.web.authentication.logout.LogoutFilter@7efa366, org.springframework.security.web.authentication.www.BasicAuthenticationFilter@54033a65, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@279ab15e, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@571c2ed8, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@5df54296, org.springframework.security.web.session.SessionManagementFilter@7d43f1c9, org.springframework.security.web.access.ExceptionTranslationFilter@cbdc0f4, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@2bda7a5b]
+2022-12-08 16:36:24.046  WARN 5928 --- [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2022-12-08 16:36:24.664  INFO 5928 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2022-12-08 16:36:24.683  INFO 5928 --- [main] c.s.b.SBIWEBSITE.SbiWebsiteApplication   : Started SbiWebsiteApplication in 10.793 seconds (JVM running for 11.957)
+2022-12-08 16:36:24.740  INFO 5928 --- [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2022-12-08 16:36:24.742  INFO 5928 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2022-12-08 16:36:24.749  INFO 5928 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2022-12-08 16:36:33.246  INFO 2936 --- [main] c.s.b.SBIWEBSITE.SbiWebsiteApplication   : Starting SbiWebsiteApplication using Java 19 on LS-LAP-10 with PID 2936 (D:\Development\SBI-WEBSITE\SBI-WEBSITE\target\classes started by phearin.yeun in D:\Development\SBI-WEBSITE\SBI-WEBSITE)
+2022-12-08 16:36:33.251  INFO 2936 --- [main] c.s.b.SBIWEBSITE.SbiWebsiteApplication   : No active profile set, falling back to 1 default profile: "default"
+2022-12-08 16:36:34.447  INFO 2936 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2022-12-08 16:36:34.579  INFO 2936 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 112 ms. Found 3 JPA repository interfaces.
+2022-12-08 16:36:35.884  INFO 2936 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2022-12-08 16:36:35.901  INFO 2936 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2022-12-08 16:36:35.902  INFO 2936 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.68]
+2022-12-08 16:36:36.125  INFO 2936 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2022-12-08 16:36:36.125  INFO 2936 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 2773 ms
+2022-12-08 16:36:36.385  INFO 2936 --- [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2022-12-08 16:36:36.461  INFO 2936 --- [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 5.6.12.Final
+2022-12-08 16:36:36.886  INFO 2936 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2022-12-08 16:36:37.395  INFO 2936 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2022-12-08 16:36:37.432  INFO 2936 --- [main] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.PostgreSQLDialect
+2022-12-08 16:36:38.710  INFO 2936 --- [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2022-12-08 16:36:38.723  INFO 2936 --- [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2022-12-08 16:36:39.599  WARN 2936 --- [main] .s.s.UserDetailsServiceAutoConfiguration : 
+
+Using generated security password: 490b734c-190f-48a2-9a34-e9c856c28daa
+
+This generated password is for development use only. Your security configuration must be updated before running your application in production.
+
+2022-12-08 16:36:39.790  INFO 2936 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@5e8698c0, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@5df54296, org.springframework.security.web.context.SecurityContextPersistenceFilter@476a2819, org.springframework.security.web.header.HeaderWriterFilter@188ae8d2, org.springframework.security.web.csrf.CsrfFilter@446f3a53, org.springframework.security.web.authentication.logout.LogoutFilter@6c2f8ecb, org.springframework.security.web.authentication.www.BasicAuthenticationFilter@4fb99927, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@571c2ed8, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@5810772a, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@1fb30e5d, org.springframework.security.web.session.SessionManagementFilter@eddc9bb, org.springframework.security.web.access.ExceptionTranslationFilter@11174bf, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@47374fa5]
+2022-12-08 16:36:39.899  WARN 2936 --- [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2022-12-08 16:36:40.462  INFO 2936 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2022-12-08 16:36:40.482  INFO 2936 --- [main] c.s.b.SBIWEBSITE.SbiWebsiteApplication   : Started SbiWebsiteApplication in 8.04 seconds (JVM running for 8.96)

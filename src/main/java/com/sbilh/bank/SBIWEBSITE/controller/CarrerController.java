@@ -25,16 +25,19 @@ public class CarrerController {
     public CarrerModel createCarrer(@RequestBody @Valid CarrerModel carrerModel){
         return carrerServiceImpl.createCarrer(carrerModel);
     }
+
     @GetMapping
     public ResponseCarrer findAll(CarrerModel carrerModel){
         List<CarrerModel> carrerModelList = carrerServiceImpl.findAll(carrerModel);
         return new ResponseCarrer(200, "success",carrerModelList);
     }
+
     @GetMapping("findby/{id}")
     public ResponseCarrer findById(@PathVariable("id") Long id) {
             CarrerModel carrerModel = carrerServiceImpl.findById(id);
             return new ResponseCarrer(200, "success", carrerModel);
     }
+
     @GetMapping("title/{jobtitle}")
     public List<CarrerModel> findAllByJobTitle(@PathVariable("jobtitle") String jobtitle,Pageable pageable){
         carrerServiceImpl.findAllByJobTitle(jobtitle, pageable);
@@ -43,6 +46,7 @@ public class CarrerController {
         }
         return null;
     }
+
     @PostMapping("/delete/{id}")
     public ResponseCarrer deleteById(@PathVariable ("id") Long id){
         boolean isDelete = carrerServiceImpl.deleteById(id);
@@ -50,6 +54,7 @@ public class CarrerController {
             throw new CarrerNotFoundException(id, "Delete doesn't success");
         return new ResponseCarrer (200,"Sccuess Deleted Carrer By Id "+ id.toString(), id);
     }
+
     @PutMapping("/update/{id}")
     public ResponseCarrer updateCarrer(@PathVariable ("id") Long id,@RequestBody CarrerModel carrerModel){
         carrerServiceImpl.save(carrerModel, id);
