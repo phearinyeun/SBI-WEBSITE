@@ -1,6 +1,6 @@
 package com.sbilh.bank.SBIWEBSITE.service.impl;
 
-import com.sbilh.bank.SBIWEBSITE.model.RegisterModel;
+import com.sbilh.bank.SBIWEBSITE.model.LoginModel;
 import com.sbilh.bank.SBIWEBSITE.repository.LoginRepository;
 import com.sbilh.bank.SBIWEBSITE.service.LoginService;
 import org.springframework.stereotype.Service;
@@ -18,21 +18,21 @@ public class LoginServiceImpl implements LoginService {
 
 
     @Override
-    public Optional<RegisterModel> userLoginOption() {
+    public Optional<LoginModel> userLoginOption() {
         return Optional.empty();
     }
 
     @Override
-    public List<RegisterModel> findbyId(Long id) {
+    public List<LoginModel> findbyId(Long id) {
         loginRepository.findById(id);
         return null;
     }
 
     @Override
-    public RegisterModel userlogin(Long id) {
+    public LoginModel userlogin(Long id) {
         if (id.equals(findbyId(id))) {
             return null;
         }
-        return new RegisterModel();
+        return new LoginModel();
     }
 }

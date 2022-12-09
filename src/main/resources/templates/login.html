@@ -14,37 +14,30 @@
 
 <body>
     <style>
-        .text-center {
-            margin-bottom: 18px;
-        }
-
-        .form-control {
-            font-size: 20px;
-        }
-
-        label {
-            font-size: 20px;
-        }
+    .form-control{
+      font-size: 20px;
+    }
+    .btn{
+      font-size: 20px;
+    }
+    .h2, h2{
+      margin-bottom: 20px;
+    }
     </style>
-
-    <form action="/" th:object="${RegisterModel}" method="POST" enctype="utf8" style="margin: 9% 35% 20% 35%;">
+    <form style="margin: 9% 30% 20% 30%;">
         <div class="text-center">
-            <h1>Register</h1>
+            <h2>Login</h2>
         </div>
         </div>
         <div class="form-group">
-            <label th:text="#{label.RegisterModel.email}">Email</label>
-            <input th:field="*{email}" type="email" class="form-control" id="exampleInputEmail1"
-                aria-describedby="emailHelp" placeholder="Email">
+            <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
+                placeholder="Email">
         </div>
         <div class="form-group">
-            <label th:text="#{label.RegisterModel.password}">Passowrd</label>
-            <input th:field="*{email}" type="password" class="form-control" id="exampleInputPassword1"
-                placeholder="Password">
+            <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
         </div>
         <div class="d-grid gap-2 mx-auto">
-            <button th:text="#{label.RegisterModel.Register}" type="button"
-                class="btn btn-primary btn-block mb-4">Register</button>
+            <button type="button" class="btn btn-primary btn-block mb-4">Login</button>
         </div>
     </form>
 </body>
