@@ -5,24 +5,27 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
 @Table(name = "logins")
-public class UserLogin {
+public class RegisterModel {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id", nullable = false)
     private Long id;
 
-    @Column(name = "firstname")
-    private String firstname;
-    @Column(name = "lastname")
-    private String lastname;
+    @NotNull
+    @NotEmpty
     @Column(name = "email")
     private String email;
+
+    @NotNull
+    @NotEmpty
     @Column(name = "password")
     private String password;
 }
