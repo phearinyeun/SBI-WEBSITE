@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="https://thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -28,39 +28,31 @@
       text-transform: uppercase;
     }
   </style>
-    <form style="margin: 9% 30% 20% 30%;">
+    <form style="margin: 9% 30% 20% 30%;" action="#" th:action="@{/register}" th:object="${register}" method="post">
       <div class="text-center">
         <h2>Register</h2>
       </div>
-        <!-- 2 column grid layout with text inputs for the first and last names -->
         <div class="row mb-4">
           <div class="col">
             <div class="form-outline">
-              <!-- <label class="form-label" for="form3Example1">First name</label> -->
-              <input type="text" id="form3Example1" class="form-control" placeholder="First Name"/>
+              <input th:field="*{firstName}" type="text" id="form3Example1" class="form-control" placeholder="First Name"/>
             </div>
           </div>
           <div class="col">
             <div class="form-outline">
-              <!-- <label class="form-label" for="form3Example2">Last name</label> -->
-              <input type="text" id="form3Example2" class="form-control" placeholder="Last Name" />
+              <input th:field="*{lastName}" type="text" id="form3Example2" class="form-control" placeholder="Last Name" />
             </div>
           </div>
         </div>
-      
-        <!-- Email input -->
+
         <div class="form-outline mb-4">
-          <!-- <label class="form-label" for="form3Example3">Email address</label> -->
-          <input type="email" id="form3Example3" class="form-control" placeholder="Email" />
+          <input th:field="*{email}" type="email" id="form3Example3" class="form-control" placeholder="Email" />
         </div>
-      
-        <!-- Password input -->
+
         <div class="form-outline mb-4">
-          <!-- <label class="form-label" for="form3Example4">Password</label> -->
-          <input type="password" id="form3Example4" class="form-control" placeholder="Password" />
+          <input th:field="*{password}" type="password" id="form3Example4" class="form-control" placeholder="Password" />
         </div>
-    
-        <!-- Submit button -->
+
         <button type="submit" class="btn btn-primary btn-block mb-4">Register</button>
       
       </form>
