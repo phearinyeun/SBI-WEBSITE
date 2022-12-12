@@ -1,8 +1,10 @@
 package com.sbilh.bank.SBIWEBSITE.service.impl;
 
 import com.sbilh.bank.SBIWEBSITE.model.RegisterModel;
+import com.sbilh.bank.SBIWEBSITE.repository.RegisterRepository;
 import com.sbilh.bank.SBIWEBSITE.service.RegisterService;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -10,20 +12,21 @@ import java.util.List;
 @Service
 @Slf4j
 public class RegisterServiceImpl implements RegisterService {
-    public final RegisterService registerService;
+    @Autowired
+    private final RegisterRepository registerRepository;
 
-    public RegisterServiceImpl(RegisterService registerService) {
-        this.registerService = registerService;
+    public RegisterServiceImpl(RegisterRepository registerRepository) {
+        this.registerRepository = registerRepository;
     }
 
     @Override
     public RegisterModel create(RegisterModel registerModel) {
-        registerService.create(registerModel);
-        return registerModel;
+        return registerRepository.save(registerModel);
+
     }
 
     @Override
     public List<RegisterModel> findAll(RegisterModel registerModel) {
-        return registerService.findAll(registerModel);
+        return registerRepository.findAll();
     }
 }

@@ -9,6 +9,7 @@ import javax.persistence.*;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
+@Table(name = "register")
 @Entity
 public class RegisterModel {
     @Id

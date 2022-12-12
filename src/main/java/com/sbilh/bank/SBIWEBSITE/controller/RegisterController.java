@@ -2,38 +2,36 @@ package com.sbilh.bank.SBIWEBSITE.controller;
 
 import com.sbilh.bank.SBIWEBSITE.model.RegisterModel;
 import com.sbilh.bank.SBIWEBSITE.service.impl.RegisterServiceImpl;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
-@Controller
+@RestController
 @RequestMapping("/register")
 public class RegisterController {
-    private final RegisterServiceImpl registerService;
+    @Autowired
+    private final RegisterServiceImpl registerServiceImpl;
 
-    public RegisterController(RegisterServiceImpl registerService) {
-        this.registerService = registerService;
+    public RegisterController(RegisterServiceImpl registerServiceImpl) {
+        this.registerServiceImpl = registerServiceImpl;
     }
 
-    @GetMapping("/registers")
-    public String  register(Model model){
-        RegisterModel registerModel = new RegisterModel();
-        model.addAttribute("register", registerModel);
-        return "register";
-    }
+//    @GetMapping("/registers")
+//    public String  register(Model model){
+//        RegisterModel registerModel = new RegisterModel();
+//        model.addAttribute("register", registerModel);
+//        return "register";
+//    }
 
     @GetMapping
     public List<RegisterModel> findAll(RegisterModel registerModel){
-        return registerService.findAll(registerModel);
+        return registerServiceImpl.findAll(registerModel);
     }
 
     @PostMapping
-    public RegisterModel create(RegisterModel registerModel){
-        registerService.create(registerModel);
-        return registerModel;
+    public RegisterModel create(@RequestBody @Valid RegisterModel registerModel){
+        return registerServiceImpl.create(registerModel);
     }
 }
