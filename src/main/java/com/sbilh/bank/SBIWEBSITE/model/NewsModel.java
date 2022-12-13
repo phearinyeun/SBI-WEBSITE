@@ -33,4 +33,7 @@ public class NewsModel {
 
     @Column(name = "description")
     private String description;
+
+    @Column(name = "read_more")
+    private String readMore;
 }

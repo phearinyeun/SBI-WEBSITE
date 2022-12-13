@@ -6,8 +6,9 @@ import java.util.List;
 import java.util.Optional;
 
 public interface NewsService {
-    NewsModel addNews (NewsModel newsModel);
-    NewsModel updateNews (NewsModel newsModel, Long id);
-    List<NewsModel> findAllNews();
-    NewsModel deleteById(Long id);
+    List <NewsModel> findAll();
+    Optional<NewsModel> findById(Long id);
+    NewsModel add (NewsModel newsModel);
+    NewsModel update (NewsModel newsModel, Long id);
+    boolean deleteById(Long id);
 }

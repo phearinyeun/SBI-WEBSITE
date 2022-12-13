@@ -1,9 +1,9 @@
 package com.sbilh.bank.SBIWEBSITE.exception;
 
-public class CarrerException extends RuntimeException{
+public class Exception extends RuntimeException{
     private static final long serialVersionUID = 1L;
     private String message;
-    public CarrerException(String message){
+    public Exception(String message){
         super(message);
         this.message = message;
     }

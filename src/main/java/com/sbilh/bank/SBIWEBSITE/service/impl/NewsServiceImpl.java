@@ -1,5 +1,7 @@
 package com.sbilh.bank.SBIWEBSITE.service.impl;
 
+import com.sbilh.bank.SBIWEBSITE.exception.NotFoundException;
+import com.sbilh.bank.SBIWEBSITE.exception.respone.Response;
 import com.sbilh.bank.SBIWEBSITE.model.NewsModel;
 import com.sbilh.bank.SBIWEBSITE.repository.NewsRepository;
 import com.sbilh.bank.SBIWEBSITE.service.NewsService;
@@ -21,12 +23,22 @@ public class NewsServiceImpl implements NewsService {
     }
 
     @Override
-    public NewsModel addNews (NewsModel newsModel) {
+    public List<NewsModel> findAll() {
+        return newsRepository.findAll();
+    }
+
+    @Override
+    public Optional<NewsModel> findById(Long id) {
+        return newsRepository.findById(id);
+    }
+
+    @Override
+    public NewsModel add(NewsModel newsModel) {
         log.info("Adding News {} to news {}", newsModel);
         return newsRepository.save(newsModel);
     }
     @Override
-    public NewsModel updateNews (NewsModel newsModel, Long id) {
+    public NewsModel update (NewsModel newsModel, Long id) {
         Optional<NewsModel> newsModelOptional = newsRepository.findById(id);
         if (newsModelOptional.isPresent()){
             newsModel.setId(id);
@@ -37,14 +49,19 @@ public class NewsServiceImpl implements NewsService {
         }
         return null;
     }
+
     @Override
-    public List<NewsModel> findAllNews() {
-        return newsRepository.findAll();
+    public boolean deleteById(Long id) {
+        Response response  = new Response();
+
+        try{
+            if(newsRepository.findById(id).isEmpty()) return false;
+            newsRepository.deleteById(id);
+            return new Response(200,"Sucess deleted ID :", );
+        }catch (Exception e){
+            log.error("error delete id: {} , message: {}",id,e.getMessage());
+            throw new  NotFoundException(id, "Coudl not delete by ID");
+        }
     }
-    @Override
-    public NewsModel deleteById(Long id) {
-        log.info("Deleted News By Id {}", id);
-        newsRepository.deleteById(id);
-        return null;
-    }
+
 }

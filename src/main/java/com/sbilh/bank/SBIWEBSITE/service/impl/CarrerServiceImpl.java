@@ -1,6 +1,6 @@
 package com.sbilh.bank.SBIWEBSITE.service.impl;
 
-import com.sbilh.bank.SBIWEBSITE.exception.CarrerNotFoundException;
+import com.sbilh.bank.SBIWEBSITE.exception.NotFoundException;
 import com.sbilh.bank.SBIWEBSITE.model.CarrerModel;
 import com.sbilh.bank.SBIWEBSITE.repository.CarrerRepository;
 import com.sbilh.bank.SBIWEBSITE.service.CarrerService;
@@ -33,7 +33,7 @@ public class CarrerServiceImpl implements CarrerService {
             carrerRepository.deleteById(id);
             return true;
         }
-        CarrerNotFoundException exception = new CarrerNotFoundException(id);
+        NotFoundException exception = new NotFoundException(id);
         return false;
     }
 
@@ -46,7 +46,7 @@ public class CarrerServiceImpl implements CarrerService {
             log.info("Carrer is updated {}", carrerModel);
             return carrerModel;
         }
-        CarrerNotFoundException exception = new CarrerNotFoundException(id);
+        NotFoundException exception = new NotFoundException(id);
         log.info("Could now found id {}",id);
         return null;
     }
@@ -70,9 +70,9 @@ public class CarrerServiceImpl implements CarrerService {
             log.info("Get Carrer by {}", id);
 //            Optional<CarrerModel> carrerModel = carrerRepository.findById(id);
             log.info("Success Get Carrer by {} {}", id, carrerModel);
-            return carrerRepository.findById(id).orElseThrow(() -> new CarrerNotFoundException(id));
+            return carrerRepository.findById(id).orElseThrow(() -> new NotFoundException(id));
         }
-        CarrerNotFoundException carrerNotFoundException = new CarrerNotFoundException(id);
+        NotFoundException carrerNotFoundException = new NotFoundException(id);
         return null;
     }
 }
