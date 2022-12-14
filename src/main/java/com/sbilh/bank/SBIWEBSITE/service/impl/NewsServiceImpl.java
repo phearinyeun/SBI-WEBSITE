@@ -1,7 +1,6 @@
 package com.sbilh.bank.SBIWEBSITE.service.impl;
 
 import com.sbilh.bank.SBIWEBSITE.exception.NotFoundException;
-import com.sbilh.bank.SBIWEBSITE.exception.respone.Response;
 import com.sbilh.bank.SBIWEBSITE.model.NewsModel;
 import com.sbilh.bank.SBIWEBSITE.repository.NewsRepository;
 import com.sbilh.bank.SBIWEBSITE.service.NewsService;
@@ -23,13 +22,20 @@ public class NewsServiceImpl implements NewsService {
     }
 
     @Override
-    public List<NewsModel> findAll() {
+    public List<NewsModel> findAll(NewsModel newsModel) {
+        log.info("Success found by News {}", newsModel);
         return newsRepository.findAll();
     }
 
     @Override
     public Optional<NewsModel> findById(Long id) {
-        return newsRepository.findById(id);
+        Optional<NewsModel> newsModelOptional = newsRepository.findById(id);
+        if (newsModelOptional.isPresent()){
+            log.info("Success find By ID {}", id);
+            return newsRepository.findById(id);
+        }
+        log.info("Could not found by ID: ",id);
+        throw new NotFoundException(id, "Could not found by ID " + id.toString());
     }
 
     @Override
@@ -44,7 +50,6 @@ public class NewsServiceImpl implements NewsService {
             newsModel.setId(id);
             newsRepository.save(newsModel);
             log.info("Carrer is update {} ", newsModel);
-
             return newsModel;
         }
         return null;
@@ -52,16 +57,23 @@ public class NewsServiceImpl implements NewsService {
 
     @Override
     public boolean deleteById(Long id) {
-        Response response  = new Response();
-
-        try{
-            if(newsRepository.findById(id).isEmpty()) return false;
+        Optional<NewsModel> newsModelOptional = newsRepository.findById(id);
+        if (newsModelOptional.isPresent()) {
             newsRepository.deleteById(id);
-            return new Response(200,"Sucess deleted ID :", );
-        }catch (Exception e){
-            log.error("error delete id: {} , message: {}",id,e.getMessage());
-            throw new  NotFoundException(id, "Coudl not delete by ID");
+            log.info("Success deleted by ID: {}", id);
+            return true;
         }
+        log.info("Could not found the ID {}", id);
+        throw new NotFoundException(id, "Could not found the ID: ", id.toString());
     }
+
+//        try{
+//            if(newsRepository.findById(id).isEmpty()) return false;
+//            newsRepository.deleteById(id);
+//        }catch (Exception e){
+//            log.error("error delete id: {} , message: {}",id,e.getMessage());
+//            throw new  NotFoundException(id, "Coudl not delete by ID");
+//        }
+//        return true;
 
 }

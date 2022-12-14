@@ -12,6 +12,7 @@ import java.util.Optional;
 @Repository
 public interface CarrerRepository extends JpaRepository<CarrerModel, Long> {
     Optional<CarrerModel> findByJobTitle(String title);
+    CarrerModel deleteByJobTitle(String jobTitle);
     @Query("SELECT j FROM CarrerModel j WHERE j.jobTitle =:jobTitle")
     List<CarrerModel> findAllByJobTitle (String jobTitle, Pageable pageable);
 

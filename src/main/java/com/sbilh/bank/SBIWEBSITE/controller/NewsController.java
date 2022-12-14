@@ -1,6 +1,5 @@
 package com.sbilh.bank.SBIWEBSITE.controller;
 
-import com.sbilh.bank.SBIWEBSITE.exception.NotFoundException;
 import com.sbilh.bank.SBIWEBSITE.exception.respone.Response;
 import com.sbilh.bank.SBIWEBSITE.model.NewsModel;
 import com.sbilh.bank.SBIWEBSITE.service.impl.NewsServiceImpl;
@@ -22,36 +21,32 @@ public class NewsController {
 
     @GetMapping
     public Response findAll(NewsModel newsModel){
-        List<NewsModel> newsModels = newsServiceimpl.findAll();
-        log.info("Success found by News {}", newsModels);
+        List<NewsModel> newsModels = newsServiceimpl.findAll(newsModel);
         return new Response(200,"Sucess", newsModels);
     }
 
     @GetMapping("find/{id}")
     public Response findById(@PathVariable ("id") Long id){
         Optional<NewsModel> newsModelOptional = newsServiceimpl.findById(id);
-        if (newsModelOptional.isPresent()){
-            log.info("Success find By ID {}", id);
-            return new Response (200, "Success find By ID", newsModelOptional);
-        }
-        throw new NotFoundException(id, "Could not found by ID " + id.toString());
+        return new Response(200, "Success find by ID", newsModelOptional);
     }
 
     @PostMapping
     public Response add(@RequestBody @Valid NewsModel newsModel){
         newsServiceimpl.add(newsModel);
-        log.info("News Addes {} ", newsModel);
         return new Response(200, "News Added ", newsModel);
     }
 
     @PostMapping("/delete/{id}")
-    public Optional<NewsModel> deleteById(@PathVariable("id") Long id){
+    public Response deleteById(@PathVariable("id") Long id){
         newsServiceimpl.deleteById(id);
-        return null;
+        return new Response(200, "Success deleted by ID :", id);
     }
 
     @PostMapping("/update/{id}")
-    public NewsModel updateNews (@PathVariable ("id") Long id, @RequestBody NewsModel newsModel){
-        return newsServiceimpl.update(newsModel,id);
+    public Response update (@RequestBody NewsModel newsModel, @PathVariable ("id") Long id){
+        newsServiceimpl.findAll(newsModel);
+        return new Response(200, "Success updated news :", newsModel);
+
     }
 }
