@@ -41,7 +41,12 @@ public class BranchesServiceImpl implements BranchesService {
 
     @Override
     public Long deleteById(Long id) {
-        Optional<BranchesModel> branchesModelOptional = branchesRepository.deleteById();
+        Optional<BranchesModel> branchesModel = branchesRepository.findById(id);
+        if (branchesModel.isPresent()){
+            branchesRepository.deleteById(id);
+            return id;
+        }
+        throw new NotFoundException(id,"Could not found Id :",id.toString());
 
     }
 
@@ -59,5 +64,14 @@ public class BranchesServiceImpl implements BranchesService {
     @Override
     public List<BranchesModel> findAll() {
         return branchesRepository.findAll();
+    }
+
+    @Override
+    public List<BranchesModel> findByCategory(String category) {
+//         branchesRepository.findByCategory(category);
+        if (branchesRepository.findAll().equals(category)) {
+            return branchesRepository.findByCategory(category);
+        }
+        throw new NotFoundException (category,"Could not found Category", category);
     }
 }

@@ -8,4 +8,6 @@ public class NotFoundException extends RuntimeException{
         super(message.length > 0 ? String.join("\n",message) : "Could not find id: " + id.toString());
     }
 
+    public NotFoundException(String category1, String s, String category) {
+    }
 }

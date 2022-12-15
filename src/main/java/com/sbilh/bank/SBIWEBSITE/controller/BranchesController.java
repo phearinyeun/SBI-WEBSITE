@@ -26,6 +26,11 @@ public class BranchesController {
         return new Response(200, "Success update ",branchesServiceImpl.update(branchesModel, id));
     }
 
+    @PostMapping("/delete/{id}")
+    public Response deleteById (@PathVariable ("id") Long id){
+        return new Response(200, "Success Deleted by ID",id);
+    }
+
     @GetMapping
     public Response findAll(){
         return new Response(200, "Sucess find all branches : ", branchesServiceImpl.findAll());
@@ -34,6 +39,11 @@ public class BranchesController {
     @GetMapping("/find/{id}")
     public Response findById(@PathVariable("id") Long id){
         return new Response(200, "Success found the Id : ", branchesServiceImpl.findById(id));
+    }
+
+    @GetMapping("/category/{category}")
+    public Response findByCategory (@PathVariable("category") String category){
+        return new Response(200, " Success found category :", branchesServiceImpl.findByCategory(category));
     }
 
 }

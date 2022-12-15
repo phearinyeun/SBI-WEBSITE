@@ -11,4 +11,5 @@ public interface BranchesService {
     Long deleteById (Long id);
     BranchesModel findById(Long id);
     List<BranchesModel> findAll();
+    List<BranchesModel> findByCategory(String category);
 }

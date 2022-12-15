@@ -37,6 +37,7 @@ public class NewsController {
         return new Response(200, "News Added ", newsModel);
     }
 
+
     @PostMapping("/delete/{id}")
     public Response deleteById(@PathVariable("id") Long id){
         newsServiceimpl.deleteById(id);
