@@ -34,21 +34,32 @@ public class FinancialHighlightServiceImpl implements FinancialHighlightService 
 
     @Override
     public Optional<FinancialHighlightModel> findById(Long id){
-        return null;
-//        financialHighlightRepository.findAll();
-//        if (findA.isEmpty())){
-//            financialHighlightRepository.findById(id);
-//        }
-//        throw new NotFoundException(id, "Can't find by ID " ,id.toString());
+        Optional<FinancialHighlightModel> financialHighlightModelList = financialHighlightRepository.findById(id);
+            if (financialHighlightModelList.isPresent()){
+                log.info("Success found by ID {} ", id);
+                return financialHighlightModelList;
+            }
+                log.info("Can't find by ID {} :", id);
+                throw new NotFoundException(id, "Can't find by ID " ,id.toString());
     }
 
     @Override
-    public Optional<FinancialHighlightModel> deleteById(Long id) {
-        return Optional.empty();
+    public Long deleteById(Long id) {
+        log.info("Success deleted by id {} ", id);
+       financialHighlightRepository.deleteById(id);
+        throw new NotFoundException(id,"Could not found the id: ", id.toString());
     }
 
     @Override
-    public Optional<FinancialHighlightModel> update(FinancialHighlightModel financialHighlightModel) {
-        return Optional.empty();
+    public FinancialHighlightModel update(FinancialHighlightModel financialHighlightModel, Long id) {
+          Optional<FinancialHighlightModel> financialHighlightModelOptional= financialHighlightRepository.findById(id);
+        if (financialHighlightModelOptional.isPresent()) {
+            log.info("Success update {}",  financialHighlightModel);
+            financialHighlightModel.setId(id);
+            financialHighlightRepository.save(financialHighlightModel);
+            return financialHighlightModel;
+        }
+        log.info("Could not found the ID {} ", id);
+        throw new  NotFoundException(id,"Could not found the ID :", id.toString());
     }
 }

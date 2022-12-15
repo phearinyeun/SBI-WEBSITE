@@ -38,11 +38,6 @@ public class CarrerServiceImpl implements CarrerService {
     }
 
     @Override
-    public CarrerModel deleteByJobtitle(String jobTitle) {
-        return carrerRepository.deleteByJobTitle(jobTitle);
-    }
-
-    @Override
     public CarrerModel save(CarrerModel carrerModel, Long id) {
         Optional<CarrerModel> carrerModelOptional = carrerRepository.findById(id);
         if(carrerModelOptional.isPresent()){

@@ -10,6 +10,6 @@ public interface FinancialHighlightService {
     FinancialHighlightModel create (FinancialHighlightModel financialHighlightModel);
     List<FinancialHighlightModel> findAll(FinancialHighlightModel financialHighlightModel);
     Optional<FinancialHighlightModel> findById (Long id);
-    Optional<FinancialHighlightModel> deleteById(Long id);
-    Optional<FinancialHighlightModel> update (FinancialHighlightModel financialHighlightModel);
+    Long deleteById(Long id);
+    FinancialHighlightModel update (FinancialHighlightModel financialHighlightModel ,Long id);
 }

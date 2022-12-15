@@ -38,7 +38,7 @@ public class SecurityConfig {
         http
                 .csrf().disable()
                 .authorizeRequests()
-                .antMatchers("/carrer/**", "/register/**", "/news/**", "/financial/**")
+                .antMatchers("/branches/**", "/carrer/**", "/register/**", "/news/**", "/financial/**")
                 .permitAll()
                 .and()
                 .formLogin()

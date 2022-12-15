@@ -27,8 +27,8 @@ public class FinancialHighlightController {
 
     @GetMapping("/find/{id}")
     public Response findbyId(@PathVariable ("id") Long id){
-        Optional<FinancialHighlightModel> financialHighlightModel = financialHighlightServiceImpl.findById(id);
-        return new Response(200, "Success findy by ID: ", financialHighlightModel);
+        Optional<FinancialHighlightModel> financialHighlightModelOptional = financialHighlightServiceImpl.findById(id);
+        return new Response(200, "Success findy by ID: ", financialHighlightModelOptional);
     }
 
     @PostMapping
@@ -36,4 +36,17 @@ public class FinancialHighlightController {
         financialHighlightServiceImpl.create(financialHighlightModel);
         return new Response(200, "Success create financial", financialHighlightModel);
     }
+
+    @PostMapping("/update/{id}")
+    public Response update (@PathVariable ("id") Long id, @RequestBody FinancialHighlightModel financialHighlightModel){
+        financialHighlightServiceImpl.update(financialHighlightModel, id);
+        return new Response(200, "Success updated :", financialHighlightModel);
+    }
+
+    @PostMapping("/delete/{id}")
+    public Response deleteById(@PathVariable("id") Long id){
+        financialHighlightServiceImpl.deleteById(id);
+        return new Response(200, "Success deleted by ID: ", id);
+    }
+
 }

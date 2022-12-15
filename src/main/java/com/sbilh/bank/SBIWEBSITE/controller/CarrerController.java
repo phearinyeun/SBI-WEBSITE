@@ -48,12 +48,6 @@ public class CarrerController {
         return null;
     }
 
-    @PostMapping("/de/{jobTitle}")
-    public Optional<CarrerModel> deleteByJobTitle(@PathVariable("jobTitle") String jobTitle){
-        carrerServiceImpl.deleteByJobtitle(jobTitle);
-        return null;
-    }
-
     @PostMapping
     public Response createCarrer(@RequestBody @Valid CarrerModel carrerModel){
         carrerServiceImpl.createCarrer(carrerModel);
