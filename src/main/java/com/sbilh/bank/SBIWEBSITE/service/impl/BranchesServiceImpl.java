@@ -68,10 +68,6 @@ public class BranchesServiceImpl implements BranchesService {
 
     @Override
     public List<BranchesModel> findByCategory(String category) {
-//         branchesRepository.findByCategory(category);
-        if (branchesRepository.findAll().equals(category)) {
-            return branchesRepository.findByCategory(category);
-        }
-        throw new NotFoundException (category,"Could not found Category", category);
+        return branchesRepository.findByCategory(category);
     }
 }

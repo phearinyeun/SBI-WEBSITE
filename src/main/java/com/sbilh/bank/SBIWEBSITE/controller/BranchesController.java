@@ -1,11 +1,13 @@
 package com.sbilh.bank.SBIWEBSITE.controller;
 
+import com.sbilh.bank.SBIWEBSITE.exception.NotFoundException;
 import com.sbilh.bank.SBIWEBSITE.exception.respone.Response;
 import com.sbilh.bank.SBIWEBSITE.model.BranchesModel;
 import com.sbilh.bank.SBIWEBSITE.service.impl.BranchesServiceImpl;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.List;
 
 @RestController
 @RequestMapping("/branches")
@@ -42,8 +44,11 @@ public class BranchesController {
     }
 
     @GetMapping("/category/{category}")
-    public Response findByCategory (@PathVariable("category") String category){
-        return new Response(200, " Success found category :", branchesServiceImpl.findByCategory(category));
+    public List<BranchesModel> findByCategory (@PathVariable("category") String category){
+         branchesServiceImpl.findByCategory(category);
+        throw new NotFoundException(category, "Could not found the category ",category);
+
     }
+
 
 }
