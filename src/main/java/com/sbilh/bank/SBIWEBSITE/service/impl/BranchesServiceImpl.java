@@ -43,11 +43,12 @@ public class BranchesServiceImpl implements BranchesService {
     public Long deleteById(Long id) {
         Optional<BranchesModel> branchesModel = branchesRepository.findById(id);
         if (branchesModel.isPresent()){
+            log.info("Success deleted by id {} ", id);
             branchesRepository.deleteById(id);
             return id;
         }
+        log.info("Could not found the id {} ", id);
         throw new NotFoundException(id,"Could not found Id :",id.toString());
-
     }
 
     @Override
@@ -58,7 +59,19 @@ public class BranchesServiceImpl implements BranchesService {
            branchesRepository.findById(id);
            return branchesModelOptional.get();
         }
+        log.info("Could not found the id", id);
         throw new NotFoundException(id,"Could not found the id ",id.toString());
+    }
+
+    @Override
+    public List<BranchesModel> findByName(String name) {
+        List<BranchesModel> branchesModels = branchesRepository.findByName(name);
+        if (!branchesModels.isEmpty()){
+            log.info("Success found the name {} ", name);
+            return branchesRepository.findByName(name);
+        }
+        log.info("Could not found by name",name);
+        throw new NotFoundException(name,"Could not found by name ",name);
     }
 
     @Override
@@ -68,6 +81,12 @@ public class BranchesServiceImpl implements BranchesService {
 
     @Override
     public List<BranchesModel> findByCategory(String category) {
-        return branchesRepository.findByCategory(category);
+        List<BranchesModel> branchesModels = branchesRepository.findByCategory(category);
+        if (!branchesModels.isEmpty()){
+            log.info("Success found category {} ",category);
+            return branchesRepository.findByCategory(category);
+        }
+        log.info("Could not found category", category);
+        throw new NotFoundException(category, "Could not found category", category);
     }
 }

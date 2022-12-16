@@ -9,4 +9,5 @@ import java.util.List;
 @Repository
 public interface BranchesRepository  extends JpaRepository<BranchesModel, Long> {
     List<BranchesModel> findByCategory(String category);
+    List<BranchesModel> findByName (String name);
 }

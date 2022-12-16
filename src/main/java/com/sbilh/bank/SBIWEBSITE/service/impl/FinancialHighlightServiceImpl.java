@@ -42,12 +42,9 @@ public class FinancialHighlightServiceImpl implements FinancialHighlightService 
                 log.info("Can't find by ID {} :", id);
                 throw new NotFoundException(id, "Can't find by ID " ,id.toString());
     }
-
     @Override
-    public Long deleteById(Long id) {
-        log.info("Success deleted by id {} ", id);
-       financialHighlightRepository.deleteById(id);
-        throw new NotFoundException(id,"Could not found the id: ", id.toString());
+    public void deleteById(Long id) {
+        financialHighlightRepository.deleteById(id);
     }
 
     @Override

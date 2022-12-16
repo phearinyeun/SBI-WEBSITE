@@ -10,6 +10,7 @@ public interface BranchesService {
     Optional<BranchesModel> update (BranchesModel branchesModel, Long id);
     Long deleteById (Long id);
     BranchesModel findById(Long id);
+    List<BranchesModel> findByName (String name);
     List<BranchesModel> findAll();
     List<BranchesModel>  findByCategory(String category);
 }

@@ -31,7 +31,7 @@ public class NewsServiceImpl implements NewsService {
     public Optional<NewsModel> findById(Long id) {
         Optional<NewsModel> newsModelOptional = newsRepository.findById(id);
         if (newsModelOptional.isPresent()){
-            log.info("Success find By ID {}", id);
+            log.info("Success find By ID {}", newsModelOptional);
             return newsRepository.findById(id);
         }
         log.info("Could not found by ID: ",id);

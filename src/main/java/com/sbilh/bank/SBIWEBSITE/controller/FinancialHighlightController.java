@@ -46,7 +46,6 @@ public class FinancialHighlightController {
     @PostMapping("/delete/{id}")
     public Response deleteById(@PathVariable("id") Long id){
         financialHighlightServiceImpl.deleteById(id);
-        return new Response(200, "Success deleted by ID: ", id);
+        return new Response(200, "Success deleted by ID: ",id);
     }
-
 }

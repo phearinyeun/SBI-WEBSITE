@@ -21,14 +21,12 @@ public class NewsController {
 
     @GetMapping
     public Response findAll(NewsModel newsModel){
-        List<NewsModel> newsModels = newsServiceimpl.findAll(newsModel);
-        return new Response(200,"Sucess", newsModels);
+        return new Response(200,"Sucess found News ", newsServiceimpl.findAll(newsModel));
     }
 
     @GetMapping("find/{id}")
     public Response findById(@PathVariable ("id") Long id){
-        Optional<NewsModel> newsModelOptional = newsServiceimpl.findById(id);
-        return new Response(200, "Success find by ID", newsModelOptional);
+        return new Response(200, "Success find by ID", newsServiceimpl.findById(id));
     }
 
     @PostMapping

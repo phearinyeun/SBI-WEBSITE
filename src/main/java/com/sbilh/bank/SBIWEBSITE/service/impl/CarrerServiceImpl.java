@@ -22,7 +22,7 @@ public class CarrerServiceImpl implements CarrerService {
     }
     @Override
     public CarrerModel createCarrer(CarrerModel carrerModel) {
-        log.info("Carrer Added {} ", carrerModel);
+        log.info("Success create  {} ", carrerModel);
         return carrerRepository.save(carrerModel);
     }
 
@@ -30,15 +30,16 @@ public class CarrerServiceImpl implements CarrerService {
     public boolean deleteById(Long id) {
         Optional<CarrerModel> carrerModel = carrerRepository.findById(id);
         if (carrerModel.isPresent()){
+            log.info("Success deleted by Id {}", id);
             carrerRepository.deleteById(id);
             return true;
         }
-        NotFoundException exception = new NotFoundException(id);
-        return false;
+        log.info("Could not found the ID {}", id);
+        throw new NotFoundException(id, "Could not found the ID ", id.toString());
     }
 
     @Override
-    public CarrerModel save(CarrerModel carrerModel, Long id) {
+    public CarrerModel update (CarrerModel carrerModel, Long id) {
         Optional<CarrerModel> carrerModelOptional = carrerRepository.findById(id);
         if(carrerModelOptional.isPresent()){
             carrerModel.setId(id);
@@ -46,33 +47,37 @@ public class CarrerServiceImpl implements CarrerService {
             log.info("Carrer is updated {}", carrerModel);
             return carrerModel;
         }
-        NotFoundException exception = new NotFoundException(id);
         log.info("Could now found id {}",id);
-        return null;
+        throw new NotFoundException(id, "Could not found the ID {} ", id.toString());
     }
 
     @Override
     public List<CarrerModel> findAll(CarrerModel carrerModel) {
+        List<CarrerModel> carrerModelList = carrerRepository.findAll();
         log.info("Get all carrer: {}",carrerModel);
         return carrerRepository.findAll();
     }
 
     @Override
     public List<CarrerModel> findAllByJobTitle(String jobTitle, Pageable pageable) {
-        log.info("Find by Carrer {} ", jobTitle);
-        return carrerRepository.findAllByJobTitle(jobTitle, pageable);
+        List<CarrerModel> carrerModelList = carrerRepository.findAllByJobTitle(jobTitle,pageable);
+        if (!carrerModelList.isEmpty()){
+            log.info("Find by Carrer {} ", jobTitle);
+            carrerRepository.findAllByJobTitle(jobTitle, pageable);
+            return carrerModelList;
+        }
+        log.info(jobTitle, "Could not found the job title", jobTitle);
+        throw new NotFoundException(jobTitle,"Could not found the job title",jobTitle);
     }
 
     @Override
     public CarrerModel findById(Long id) {
         Optional<CarrerModel> carrerModel = carrerRepository.findById(id);
         if (carrerModel.isPresent()) {
-            log.info("Get Carrer by {}", id);
-//            Optional<CarrerModel> carrerModel = carrerRepository.findById(id);
             log.info("Success Get Carrer by {} {}", id, carrerModel);
             return carrerRepository.findById(id).orElseThrow(() -> new NotFoundException(id));
         }
-        NotFoundException carrerNotFoundException = new NotFoundException(id);
-        return null;
+        log.info("Could not found ID {} ",id);
+        throw new NotFoundException(id,"Could not found the ID :", id.toString());
     }
 }
