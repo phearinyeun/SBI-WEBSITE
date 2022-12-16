@@ -7,8 +7,6 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-import java.util.List;
-import java.util.Optional;
 
 @RestController
 @Slf4j
@@ -31,21 +29,17 @@ public class NewsController {
 
     @PostMapping
     public Response add(@RequestBody @Valid NewsModel newsModel){
-        newsServiceimpl.add(newsModel);
-        return new Response(200, "News Added ", newsModel);
+        return new Response(200, "News Added ", newsServiceimpl.add(newsModel));
     }
-
 
     @PostMapping("/delete/{id}")
     public Response deleteById(@PathVariable("id") Long id){
-        newsServiceimpl.deleteById(id);
-        return new Response(200, "Success deleted by ID :", id);
+        return new Response(200, "Success deleted by ID :", newsServiceimpl.deleteById(id));
     }
 
     @PostMapping("/update/{id}")
     public Response update (@RequestBody NewsModel newsModel, @PathVariable ("id") Long id){
-        newsServiceimpl.findAll(newsModel);
-        return new Response(200, "Success updated news :", newsModel);
+        return new Response(200, "Success updated news :", newsServiceimpl.findAll(newsModel));
 
     }
 }
