@@ -1,31 +1,26 @@
-package com.sbilh.bank.SBIWEBSITE.model;
+package com.sbilh.bank.SBIWEBSITE.login.dto;
 
+import com.sbilh.bank.SBIWEBSITE.login.dto.Role;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.Collection;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name = "register")
 @Entity
-public class RegisterModel {
+//@Table(name = "/user")
+public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id", nullable = false)
     private Long id;
-
-    @Column(name = "firstname")
-    private String firstName;
-
-    @Column(name = "lastname")
-    private String lastName;
-
-    @Column(name = "email")
-    private String email;
-
-    @Column(name = "password")
+    private String username;
     private String password;
+    @ManyToMany
+    private Collection<Role> roles = new ArrayList<>();
 }

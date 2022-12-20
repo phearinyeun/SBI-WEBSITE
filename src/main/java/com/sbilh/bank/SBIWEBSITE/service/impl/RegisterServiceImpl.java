@@ -1,12 +1,11 @@
 package com.sbilh.bank.SBIWEBSITE.service.impl;
 
-import com.sbilh.bank.SBIWEBSITE.model.RegisterModel;
+import com.sbilh.bank.SBIWEBSITE.model.UserLoginModel;
 import com.sbilh.bank.SBIWEBSITE.repository.RegisterRepository;
 import com.sbilh.bank.SBIWEBSITE.service.RegisterService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.PathVariable;
 
 import java.util.List;
 import java.util.Optional;
@@ -22,28 +21,28 @@ public class RegisterServiceImpl implements RegisterService {
     }
 
     @Override
-    public RegisterModel create(RegisterModel registerModel) {
+    public UserLoginModel create(UserLoginModel registerModel) {
         return registerRepository.save(registerModel);
 
     }
 
     @Override
-    public List<RegisterModel> findAll(RegisterModel registerModel) {
+    public List<UserLoginModel> findAll(UserLoginModel registerModel) {
         return registerRepository.findAll();
     }
 
     @Override
-    public Optional<RegisterModel> findById(Long id) {
+    public Optional<UserLoginModel> findById(Long id) {
         return registerRepository.findById(id);
     }
 
     @Override
-    public List<RegisterModel> findFirstname(String firstName, String lastName) {
+    public List<UserLoginModel> findFirstname(String firstName, String lastName) {
         return registerRepository.findFirstname(firstName, lastName);
     }
 
     @Override
-    public Optional<RegisterModel> deleteById(Long id) {
+    public Optional<UserLoginModel> deleteById(Long id) {
         registerRepository.deleteById(id);
         return null;
     }

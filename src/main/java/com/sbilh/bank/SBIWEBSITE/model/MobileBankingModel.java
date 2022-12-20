@@ -19,14 +19,14 @@ public class MobileBankingModel {
     @SequenceGenerator(name = "sequence_mobileBanking", allocationSize = 1)
     private Long Id;
 
-    @Column(name = "name")
+    @Column(name = "name", length = 2000)
     @NotNull
     @NotEmpty
     String name;
 
     @NotNull
     @NotEmpty
-    @Column(name = "description")
+    @Column(name = "description", length = 1000)
     String description;
 
     @NotNull
