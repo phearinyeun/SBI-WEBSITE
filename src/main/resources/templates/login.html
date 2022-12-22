@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -22,22 +22,21 @@
       margin-bottom: 20px;
     }
     </style>
-    <form action="login" method="POST" style="margin: 9% 30% 20% 30%;">
+    <form action="#" th:action="@{/login}" method="post" style="margin: 9% 30% 20% 30%;">
         <div class="text-center">
             <h2>Login</h2>
         </div>
         </div>
         <div class="form-group">
-            <input th:text="*{email}" type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
+            <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
                 placeholder="Email">
         </div>
         <div class="form-group">
-            <input th:text="*{password}" type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+            <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
         </div>
         <div class="d-grid gap-2 mx-auto">
             <button type="button" class="btn btn-primary btn-block mb-4">Login</button>
         </div>
     </form>
 </body>
-
 </html>
