@@ -41,7 +41,7 @@ public class SecurityConfig {
         http
                 .csrf().disable()
                 .authorizeRequests()
-                .antMatchers( "login/**", "/login")
+                .antMatchers( "login/**", "/login", "/BranchesModel/**", "/register/**")
                 .permitAll().anyRequest().authenticated()
                 .and()
 
@@ -50,7 +50,7 @@ public class SecurityConfig {
                     loginConfig
                             .loginPage("/login")
                             .loginProcessingUrl("/login")
-                            .defaultSuccessUrl("/")
+                            .defaultSuccessUrl("/BranchesModel")
                             .permitAll();
                 })
                 .logout().deleteCookies("JSESSIONID") .logoutSuccessUrl("/login?logout");
