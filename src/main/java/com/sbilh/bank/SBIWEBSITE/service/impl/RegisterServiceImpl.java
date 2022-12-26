@@ -6,6 +6,9 @@ import com.sbilh.bank.SBIWEBSITE.service.RegisterService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+import java.util.Optional;
+
 @Service
 @Slf4j
 public class RegisterServiceImpl implements RegisterService {
@@ -15,41 +18,34 @@ public class RegisterServiceImpl implements RegisterService {
         this.registerRepository = registerRepository;
     }
 
+
     @Override
     public RegisterModel create(RegisterModel registerModel) {
-        log.info("Success create {}", registerModel);
-        return registerRepository.create(registerModel);
+        return registerRepository.save(registerModel);
     }
 
-////
-////    @Override
-////    public List<RegisterModel> findAll(RegisterModel registerModel) {
-////        log.info("Get All {} ", registerModel);
-////        return registerRepository.findAll();
-////    }
-////
-////    @Override
-////    public Optional<RegisterModel> findById(Long id) {
-////        return Optional.empty();
-////    }
-////
-////    @Override
-////    public Optional<RegisterModel> findByFirstname(String firstname) {
-////        return Optional.empty();
-////    }
-////
-////    @Override
-////    public Optional<RegisterModel> deleteById(Long id) {
-////        return Optional.empty();
-////    }
-////
-////    @Override
-////    public Optional<RegisterModel> deleteByFirstname(String firstname) {
-////        return Optional.empty();
-////    }
-////
-////    @Override
-////    public Optional<RegisterModel> update(Long id) {
-////        return Optional.empty();
-////    }
+    @Override
+    public Optional<RegisterModel> deleteById(Long id) {
+        return Optional.empty();
+    }
+
+    @Override
+    public Optional<RegisterModel> update(RegisterModel registerModel) {
+        return Optional.empty();
+    }
+
+    @Override
+    public List<RegisterModel> findAll() {
+        return registerRepository.findAll();
+    }
+
+    @Override
+    public List<RegisterModel> findById(Long id) {
+        return null;
+    }
+
+    @Override
+    public Optional<RegisterModel> findByFirstname(String email) {
+        return Optional.empty();
+    }
 }

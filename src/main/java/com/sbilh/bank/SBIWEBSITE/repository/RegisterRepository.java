@@ -6,5 +6,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface RegisterRepository extends JpaRepository<RegisterModel, Long> {
-    RegisterModel create(RegisterModel registerModel);
+
 }

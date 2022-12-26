@@ -28,41 +28,45 @@
       font-size: 30px;
     }
   </style>
-    <form style="margin: 9% 34% 20% 34%;" th:action="@{/register}" th:object="${register}" action="#" method="post">
+  <div class="alert alert-primary" th:if="${res != null}" th:text="${res.status}">
+      abc
+  </div>
+    <form style="margin: 9% 34% 20% 34%;" action="/register/create" th:object="${register}" method="POST">
       <div class="text-center">
         <h2>Sign Up</h2>
       </div>
         <div class="row mb-4">
           <div class="col">
             <div class="form-outline">
-              <input th:field="*{firstname}" type="text" id="firstname" class="form-control" placeholder="First Name"/>
+              <input th:field="*{firstname}" type="text" id="firstname" name="firstname" class="form-control" placeholder="First Name"/>
+                <span th:if="${#fields.hasErrors('firstname')}" th:errors="*{firsname}"></span>
             </div>
           </div>
           <div class="col">
             <div class="form-outline">
-              <input th:field="*{lastname}" type="text" id="lastname" class="form-control" placeholder="Last Name" />
+              <input th:field="*{lastname}" type="text" id="lastname" name="lastname" class="form-control" placeholder="Last Name" />
             </div>
           </div>
         </div>
 
         <div class="form-outline mb-4">
-          <input th:field="*{email}" type="email" id="email" class="form-control" placeholder="Email" />
+          <input th:field="*{email}" type="email" name="email" id="email" class="form-control" placeholder="Email" />
         </div>
 
         <div class="row mb-4">
             <div class="col">
                 <div class="form-outline">
-                    <input th:field="*{password}" type="password" id="password" class="form-control" placeholder="Password" />
+                    <input th:field="*{password}" name="password" type="password" id="password" class="form-control" placeholder="Password" />
                 </div>
             </div>
                 <div class="col">
                     <div class="form-outline">
-                        <input th:field="*{matchingPassword}" type="password" id="matchingPassword" class="form-control" placeholder="Password" />
+                        <input th:field="*{matchingPassword}" name="matchingPassword" type="password" id="matchingPassword" class="form-control" placeholder="Password" />
                     </div>
                 </div>
             </div>
         </div>
-        <button type="submit" class="btn btn-primary btn-block mb-4">SIGN UP</button>
+        <button type="submit" class="btn btn-primary btn-block mb-4" th:href="@{home.html}">SIGN UP</button>
       </form>
 
       <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
