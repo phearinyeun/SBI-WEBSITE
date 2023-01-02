@@ -6,7 +6,6 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import javax.validation.constraints.Email;
-import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
 
 @Data
@@ -21,11 +20,11 @@ public class RegisterModel {
     private Long id;
 
     @NotEmpty(message = "First Name can not empty")
-    @Column(name = "firstname")
+    @Column(name = "firstname", length = 50)
     private String firstname;
 
     @NotEmpty(message = "Last Name can not empty")
-    @Column(name = "lastname")
+    @Column(name = "lastname", length = 50)
     private String lastname;
 
     @NotEmpty(message = "Email can not empty")

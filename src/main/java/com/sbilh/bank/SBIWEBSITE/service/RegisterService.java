@@ -7,6 +7,7 @@ import java.util.Optional;
 
 public interface RegisterService {
     RegisterModel create (RegisterModel registerModel);
+    void register(RegisterModel registerModel);
     Optional<RegisterModel> deleteById(Long id);
     Optional<RegisterModel> update(RegisterModel registerModel);
     List<RegisterModel> findAll();

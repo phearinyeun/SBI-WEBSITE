@@ -5,8 +5,6 @@ import com.sbilh.bank.SBIWEBSITE.model.RegisterModel;
 import com.sbilh.bank.SBIWEBSITE.service.impl.RegisterServiceImpl;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -27,18 +25,22 @@ public class RegisterController {
         model.addAttribute("register", registerModel);
         return "register";
     }
+
     private List<RegisterModel> getAllRegister(){
         return registerService.findAll();
     }
     @PostMapping("/create")
-//    public Response create(@RequestBody RegisterModel registerModel){
-    public String create(@Valid  RegisterModel  registerModel, final BindingResult bindingResult,Model model){
-        if (bindingResult.hasErrors()){
-            return "register";
-        }
+    public String create(final @Valid RegisterModel registerModel ,final Model model) {
         Response res = new Response(200, "Success", registerService.create(registerModel));
         model.addAttribute("res", res);
-        return "register";
+        model.addAttribute("register", registerService.findAll());
+        return "home";
+    }
+
+    @PostMapping("/delete/{id}")
+    public String delete (@PathVariable("id") Long id){
+        registerService.deleteById(id);
+        return "redirect:/";
     }
 
     @GetMapping("/getall")
