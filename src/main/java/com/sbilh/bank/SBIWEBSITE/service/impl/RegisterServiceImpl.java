@@ -34,8 +34,9 @@ public class RegisterServiceImpl implements RegisterService {
     }
 
     @Override
-    public Optional<RegisterModel> deleteById(Long id) {
-        return Optional.empty();
+    public boolean deleteById(Long id) {
+        registerRepository.deleteById(id);
+        return true;
     }
 
     @Override

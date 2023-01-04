@@ -27,12 +27,48 @@
         <td th:text="${register.lastname}"></td>
         <td th:text="${register.email}"></td>
         <td>
-          <a th:href="@{/delete/{id}(id=${register.id})}"> <i class="bi bi-trash"></i></a>
+          <a th:href="@{register/delete(id=${register.id})}" class="btn btn-danger" title="Delete">Delete</a>
         </td>
       </tr>
       </tbody>
     </table>
   </div>
+
+  <div class="modal fade text-center" id="confirmModal">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Delete Confirmation</h5>
+          <button type="button" class="close" data-dismiss="modal">
+            <span aria-hidden="true">×</span>
+          </button>
+        </div>
+
+        <div class="modal-body">
+          <span id="confirmText"></span>
+        </div>
+
+        <div class="modal-footer">
+          <a type="button" id="yesBtn" class="btn btn-danger">Yes</a>
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script type="text/javascript">
+    $(document).ready(function () {
+      $(".btn-delete").on("click", function (e) {
+        e.preventDefault();
+        link = $(this);
+
+        id = link.attr("id");
+        $("#yesBtn").attr("href", link.attr("href"));
+        $("#confirmText").html("Do you want to delete the File: \<strong\>" + id + "\<\/strong\>?");
+        $("#confirmModal").modal();
+      });
+    });
+  </script>
 </body>
 
   <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>

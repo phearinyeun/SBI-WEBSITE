@@ -6,6 +6,7 @@ import com.sbilh.bank.SBIWEBSITE.service.impl.RegisterServiceImpl;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.validation.Valid;
 import java.util.List;
@@ -37,14 +38,20 @@ public class RegisterController {
         return "home";
     }
 
-    @PostMapping("/delete/{id}")
-    public String delete (@PathVariable("id") Long id){
-        registerService.deleteById(id);
-        return "redirect:/";
-    }
+    @GetMapping("/delete")
+    public String delete (@RequestParam Long id, RedirectAttributes redirectAttributes){
+        try {
+            boolean existed = registerService.deleteById(id);
 
-    @GetMapping("/getall")
-    public Response findAll(@RequestBody RegisterModel registerModel){
-        return new Response(200, "Success", registerService.findAll());
+            if(existed){
+                redirectAttributes.addFlashAttribute("message", "Delete user successfully" + id);
+            } else {
+                redirectAttributes.addFlashAttribute("message", "The id does not exist");
+            }
+        } catch (Exception e){
+            redirectAttributes.addFlashAttribute("message",
+                    "Could not delete the file: " + id + ". Error: " + e.getMessage());
+        }
+        return "redirect:/home";
     }
 }
