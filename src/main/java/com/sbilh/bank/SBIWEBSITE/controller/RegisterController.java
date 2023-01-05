@@ -40,18 +40,13 @@ public class RegisterController {
 
     @GetMapping("/delete")
     public String delete (@RequestParam Long id, RedirectAttributes redirectAttributes){
-        try {
-            boolean existed = registerService.deleteById(id);
-
-            if(existed){
-                redirectAttributes.addFlashAttribute("message", "Delete user successfully" + id);
-            } else {
-                redirectAttributes.addFlashAttribute("message", "The id does not exist");
-            }
-        } catch (Exception e){
-            redirectAttributes.addFlashAttribute("message",
-                    "Could not delete the file: " + id + ". Error: " + e.getMessage());
-        }
+        registerService.deleteById(id);
         return "redirect:/home";
+    }
+
+    @PostMapping("/update")
+    public String update(RegisterModel registerModel , Long id){
+        registerService.update(registerModel, id);
+        return "redirect:/register";
     }
 }

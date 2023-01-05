@@ -9,7 +9,7 @@ public interface RegisterService {
     RegisterModel create (RegisterModel registerModel);
     void register(RegisterModel registerModel);
     boolean deleteById(Long id);
-    Optional<RegisterModel> update(RegisterModel registerModel);
+    RegisterModel update(RegisterModel registerModel, Long id);
     List<RegisterModel> findAll();
     List<RegisterModel> findById(Long id);
     Optional<RegisterModel> findByFirstname(String email);

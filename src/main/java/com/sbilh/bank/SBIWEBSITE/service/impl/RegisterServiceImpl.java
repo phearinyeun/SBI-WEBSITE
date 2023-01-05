@@ -40,8 +40,14 @@ public class RegisterServiceImpl implements RegisterService {
     }
 
     @Override
-    public Optional<RegisterModel> update(RegisterModel registerModel) {
-        return Optional.empty();
+    public RegisterModel update(RegisterModel registerModel, Long id) {
+        Optional<RegisterModel> registerModelOptional = registerRepository.findById(id);
+        if(registerModelOptional.isPresent()){
+            registerModel.setId(id);
+            registerRepository.save(registerModel);
+            return registerModel;
+        }
+        return null;
     }
 
     @Override
